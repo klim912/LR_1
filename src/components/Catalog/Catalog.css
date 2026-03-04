@@ -1,0 +1,16 @@
+.catalog-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+.catalog-main h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}

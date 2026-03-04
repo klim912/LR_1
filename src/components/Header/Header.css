@@ -1,0 +1,26 @@
+.header {
+  background-color: var(--card-bg);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+}
+.header-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+.header-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+.header-nav a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+.header-nav a:hover {
+  color: var(--primary-color);
+}
