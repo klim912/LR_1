@@ -3,6 +3,7 @@ import Header from "./components/Header/Header";
 import MainContent from "./components/MainContent/MainContent";
 import Cart from "./components/Cart/Cart";
 import Footer from "./components/Footer/Footer";
+import Sidebar from "./components/Sidebar/Sidebar";
 import "./styles/global.css";
 
 const PRODUCTS = [
@@ -15,7 +16,12 @@ const PRODUCTS = [
 
 function App() {
   const [products, setProducts] = useState(PRODUCTS);
+  const [currentCategory, setCurrentCategory] = useState('Всі');
   const [cartItems, setCartItems] = useState([]);
+
+  const filteredProducts = currentCategory === 'Всі' 
+    ? products 
+    : products.filter(p => p.category === currentCategory);
 
   const addToCart = (product) => {
     setCartItems((prev) => {
@@ -67,8 +73,14 @@ function App() {
           className="main-layout"
           style={{ display: "flex", gap: "20px", padding: "20px" }}
         >
+
+        <Sidebar 
+          activeCategory={currentCategory} 
+          onSelectCategory={setCurrentCategory} 
+        />
+
           <MainContent
-            allProducts={products}
+            allProducts={filteredProducts}
             onAddToCart={addToCart}
             onToggleFavorite={handleToggleFavorite}
           />
