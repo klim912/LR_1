@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from './components/Header/Header';
-import Catalog from './components/Catalog/Catalog';
+import MainContent from './components/MainContent/MainContent';
 import Footer from './components/Footer/Footer';
 import './styles/global.css';
 
-const productsData = [
+const PRODUCTS = [
   { id: 1, name: 'Ноутбук TechPro 15', price: 1200, category: 'Ноутбуки' },
   { id: 2, name: 'Смартфон Galaxy S23', price: 850, category: 'Смартфони' },
   { id: 3, name: 'Бездротові навушники', price: 150, category: 'Аксесуари' },
@@ -14,11 +14,13 @@ const productsData = [
 
 function App() {
   return (
-    <div className="app-container">
-      <Header />
-      <Catalog products={productsData} />
-      <Footer />
-    </div>
+    <>
+      <div className="app-container">
+        <Header />
+        <MainContent allProducts={PRODUCTS} />
+        <Footer />
+      </div>
+    </>
   );
 }
 

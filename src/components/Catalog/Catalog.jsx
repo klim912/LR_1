@@ -2,16 +2,13 @@ import React from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import './Catalog.css';
 
-const Catalog = ({ products }) => {
+const Catalog = ({ items }) => {
   return (
-    <main className="catalog-main">
-      <h2>Каталог товарів</h2>
-      <div className="products-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
-    </main>
+    <div className="catalog-grid">
+      {items.map((item) => (
+        <ProductCard key={item.id} product={item} />
+      ))}
+    </div>
   );
 };
 
