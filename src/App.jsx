@@ -4,6 +4,7 @@ import MainContent from "./components/MainContent/MainContent";
 import Cart from "./components/Cart/Cart";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar/Sidebar";
+import AddProductForm from "./components/AddProductForm/AddProductForm";
 import "./styles/global.css";
 
 const PRODUCTS = [
@@ -63,6 +64,10 @@ function App() {
     );
   };
 
+  const handleAddProduct = (newProduct) => {
+    setProducts(prev => [...prev, newProduct]);
+  };
+
   return (
     <>
       <div className="app-container">
@@ -79,11 +84,16 @@ function App() {
           onSelectCategory={setCurrentCategory} 
         />
 
-          <MainContent
-            allProducts={filteredProducts}
-            onAddToCart={addToCart}
-            onToggleFavorite={handleToggleFavorite}
-          />
+          <div className="content-area" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
+            <AddProductForm onAddProduct={handleAddProduct} />
+            
+            <MainContent
+              allProducts={filteredProducts}
+              onAddToCart={addToCart}
+              onToggleFavorite={handleToggleFavorite}
+            />
+          </div>
+          
           <Cart
             items={cartItems}
             onUpdate={updateCount}
