@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import MainContent from "./components/MainContent/MainContent";
 import Cart from "./components/Cart/Cart";
@@ -16,9 +16,25 @@ const PRODUCTS = [
 ];
 
 function App() {
-  const [products, setProducts] = useState(PRODUCTS);
+  const [products, setProducts] = useState(() => {
+    const saved = localStorage.getItem('techstore-products');
+    return saved ? JSON.parse(saved) : PRODUCTS;
+  });
+
+  const [cartItems, setCartItems] = useState(() => {
+    const saved = localStorage.getItem('techstore-cart');
+    return saved ? JSON.parse(saved) : [];
+  });
+
   const [currentCategory, setCurrentCategory] = useState('Всі');
-  const [cartItems, setCartItems] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem('techstore-products', JSON.stringify(products));
+  }, [products]);
+
+  useEffect(() => {
+    localStorage.setItem('techstore-cart', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const filteredProducts = currentCategory === 'Всі' 
     ? products 
@@ -27,13 +43,11 @@ function App() {
   const addToCart = (product) => {
     setCartItems((prev) => {
       const existing = prev.find((item) => item.id === product.id);
-
       if (existing) {
         return prev.map((item) =>
           item.id === product.id ? { ...item, count: item.count + 1 } : item,
         );
       }
-
       return [...prev, { ...product, count: 1 }];
     });
   };
@@ -78,11 +92,10 @@ function App() {
           className="main-layout"
           style={{ display: "flex", gap: "20px", padding: "20px" }}
         >
-
-        <Sidebar 
-          activeCategory={currentCategory} 
-          onSelectCategory={setCurrentCategory} 
-        />
+          <Sidebar 
+            activeCategory={currentCategory} 
+            onSelectCategory={setCurrentCategory} 
+          />
 
           <div className="content-area" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
             <AddProductForm onAddProduct={handleAddProduct} />
@@ -93,7 +106,6 @@ function App() {
               onToggleFavorite={handleToggleFavorite}
             />
           </div>
-          
           <Cart
             items={cartItems}
             onUpdate={updateCount}
