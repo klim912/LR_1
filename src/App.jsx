@@ -5,6 +5,7 @@ import Cart from "./components/Cart/Cart";
 import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import AddProductForm from "./components/AddProductForm/AddProductForm";
+import ApiProducts from "./components/ApiProducts/ApiProducts";
 import "./styles/global.css";
 
 const PRODUCTS = [
@@ -102,6 +103,11 @@ function App() {
             
             <MainContent
               allProducts={filteredProducts}
+              onAddToCart={addToCart}
+              onToggleFavorite={handleToggleFavorite}
+            />
+
+            <ApiProducts 
               onAddToCart={addToCart}
               onToggleFavorite={handleToggleFavorite}
             />
