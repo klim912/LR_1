@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './ProductCard.css';
 
 const ProductCard = ({ product, onAddToCart, onToggleFavorite }) => {
@@ -22,6 +23,9 @@ const ProductCard = ({ product, onAddToCart, onToggleFavorite }) => {
             {product.isFavorite ? '❤️ В обраному' : '🤍 В обране'}
           </button>
         </div>
+        <Link to={`/product/${product.id}`} className="details-link" style={{ display: 'block', textAlign: 'center', marginTop: '10px' }}>
+          Детальніше
+        </Link>
       </div>
     </article>
   );

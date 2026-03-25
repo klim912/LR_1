@@ -1,18 +1,20 @@
-import React from 'react';
-import './Header.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import './Header.css'
 
-const Header = () => {
+const Header = ({ cartCount }) => {
   return (
-    <header className="header">
-      <div className="header-logo">TechStore</div>
-      <nav className="header-nav">
-        <ul>
-          <li><a href="#all">Всі товари</a></li>
-          <li><a href="#laptops">Ноутбуки</a></li>
-          <li><a href="#phones">Смартфони</a></li>
-          <li><a href="#accessories">Аксесуари</a></li>
-        </ul>
+    <header className="header" style={{ display: "flex", justifyContent: "space-between", padding: "10px 20px", background: "#f8f9fa" }}>
+      <div className="logo">TechStore</div>
+      <nav style={{ display: "flex", gap: "20px" }}>
+        {/* Використовуємо NavLink для переходу без перезавантаження */}
+        <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>Головна</NavLink>
+        <NavLink to="/catalog" className={({ isActive }) => isActive ? "active" : ""}>Каталог</NavLink>
+        <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>Про нас</NavLink>
       </nav>
+      <div className="cart-info">
+        🛒 Кошик: <strong>{cartCount}</strong>
+      </div>
     </header>
   );
 };

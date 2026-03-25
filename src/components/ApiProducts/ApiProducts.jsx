@@ -50,7 +50,7 @@ const ApiProducts = ({ onAddToCart, onToggleFavorite }) => {
 
       <div className="products-grid" style={{ display: 'flex', flexWrap: 'wrap', gap: '20px' }}>
         {products.map((product) => (
-          
+
           <article key={product.id} className="product-card" style={{ flex: '1 1 calc(25% - 20px)', minWidth: '220px' }}>
             <div className="image-placeholder">
               <img 
