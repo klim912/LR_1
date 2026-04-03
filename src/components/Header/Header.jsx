@@ -13,9 +13,10 @@ const Header = ({ cartCount }) => {
       <div className="logo">TechStore</div>
 
       <nav>
-        <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""}>{t('home')}</NavLink>
+        <NavLink to="/"        className={({ isActive }) => isActive ? "active" : ""}>{t('home')}</NavLink>
         <NavLink to="/catalog" className={({ isActive }) => isActive ? "active" : ""}>{t('catalog')}</NavLink>
-        <NavLink to="/about" className={({ isActive }) => isActive ? "active" : ""}>{t('about')}</NavLink>
+        <NavLink to="/about"   className={({ isActive }) => isActive ? "active" : ""}>{t('about')}</NavLink>
+        <NavLink to="/ui-kit"  className={({ isActive }) => isActive ? "active" : ""}>UI Kit</NavLink>
       </nav>
 
       <div className="header-controls">

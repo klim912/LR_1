@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import './AddProductForm.css';
+import { Button, Input } from '../ui';
+import styles from './AddProductForm.module.css';
 
 const AddProductForm = ({ onAddProduct }) => {
-  // Керовані стани для полів форми
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
+  const [name, setName]         = useState('');
+  const [price, setPrice]       = useState('');
   const [category, setCategory] = useState('Ноутбуки');
+  const [nameError, setNameError] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!name.trim()) {
-      alert('Будь ласка, введіть коректну назву товару!');
+      setNameError('Будь ласка, введіть назву товару');
       return;
     }
+    setNameError('');
 
-    const newProduct = {
+    onAddProduct({
       id: Date.now(),
       name: name.trim(),
       price: Number(price) || 0,
-      category: category,
-      isFavorite: false
-    };
-
-    onAddProduct(newProduct);
+      category,
+      isFavorite: false,
+    });
 
     setName('');
     setPrice('');
@@ -31,31 +31,42 @@ const AddProductForm = ({ onAddProduct }) => {
   };
 
   return (
-    <div className="form-container">
-      <h3>Додати новий товар</h3>
-      <form onSubmit={handleSubmit} className="add-product-form">
-        <input
-          type="text"
-          placeholder="Назва товару..."
+    <div className={styles.container}>
+      <h3 className={styles.title}>Додати новий товар</h3>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <Input
+          label="Назва товару"
+          placeholder="Введіть назву..."
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => { setName(e.target.value); setNameError(''); }}
+          error={nameError}
         />
-        
-        <input
+
+        <Input
+          label="Ціна ($)"
           type="number"
-          placeholder="Ціна ($)..."
+          placeholder="0"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />
 
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="Ноутбуки">Ноутбуки</option>
-          <option value="Смартфони">Смартфони</option>
-          <option value="Аксесуари">Аксесуари</option>
-          <option value="Монітори">Монітори</option>
-        </select>
+        <div className={styles.selectWrapper}>
+          <label className={styles.selectLabel}>Категорія</label>
+          <select
+            className={styles.select}
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+          >
+            <option value="Ноутбуки">Ноутбуки</option>
+            <option value="Смартфони">Смартфони</option>
+            <option value="Аксесуари">Аксесуари</option>
+            <option value="Монітори">Монітори</option>
+          </select>
+        </div>
 
-        <button type="submit" className="submit-btn">Додати в каталог</button>
+        <Button type="submit" variant="primary" size="md">
+          ＋ Додати в каталог
+        </Button>
       </form>
     </div>
   );
