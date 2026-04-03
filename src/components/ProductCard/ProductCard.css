@@ -1,5 +1,5 @@
 .product-card {
-  background-color: var(--card-bg);
+  background: var(--card-bg);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   overflow: hidden;
@@ -9,7 +9,7 @@
   transform: translateY(-5px);
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-.product-image-placeholder {
+.image-placeholder {
   height: 150px;
   background-color: var(--border-color);
   display: flex;
@@ -17,25 +17,29 @@
   justify-content: center;
   color: var(--text-light);
 }
-.product-info {
+
+.card-body{
   padding: 1rem;
 }
-.product-category {
+
+.card-body h3{
+  font-size: 1.1rem;
+  margin: 0.5rem 0;
+}
+
+.category {
   font-size: 0.8rem;
   color: var(--text-light);
   text-transform: uppercase;
 }
-.product-name {
-  font-size: 1.1rem;
-  margin: 0.5rem 0;
-}
-.product-price {
+
+.price {
   font-size: 1.25rem;
   font-weight: bold;
   color: var(--primary-color);
   margin-bottom: 1rem;
 }
-.buy-button {
+button {
   width: 100%;
   padding: 0.5rem;
   background-color: var(--primary-color);
@@ -45,6 +49,27 @@
   cursor: pointer;
   font-weight: bold;
 }
-.buy-button:hover {
+button:hover {
   background-color: var(--primary-hover);
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+.buy-btn {
+  flex: 1;
+} .fav-btn {
+  flex: 1;
+  background: #e2e8f0;
+  color: #1e293b;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.fav-btn.active {
+  background: #fee2e2;
+  color: #ef4444;
+  border: 1px solid #ef4444;
 }

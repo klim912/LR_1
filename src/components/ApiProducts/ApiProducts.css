@@ -1,0 +1,22 @@
+.api-products-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 2px dashed #cbd5e1;
+}
+
+.api-products-grid {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.api-status {
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.loading { background-color: #e0f2fe; color: #0284c7; }
+.error { background-color: #fee2e2; color: #b91c1c; }

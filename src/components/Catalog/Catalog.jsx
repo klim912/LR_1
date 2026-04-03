@@ -1,17 +1,28 @@
-import React from 'react';
-import ProductCard from '../ProductCard/ProductCard';
-import './Catalog.css';
+import React from "react";
+import ProductCard from "../ProductCard/ProductCard";
+import "./Catalog.css";
 
-const Catalog = ({ products }) => {
-  return (
-    <main className="catalog-main">
-      <h2>Каталог товарів</h2>
-      <div className="products-grid">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+const Catalog = ({ items, onAddToCart, onToggleFavorite }) => {
+  
+if (items.length === 0) {
+    return (
+      <div className="no-products">
+        <p>Товарів у цій категорії поки що немає 📦</p>
       </div>
-    </main>
+    );
+  }
+
+  return (
+    <div className="catalog-grid">
+      {items.map((item) => (
+        <ProductCard
+          key={item.id}
+          product={item}
+          onAddToCart={onAddToCart}
+          onToggleFavorite={onToggleFavorite}
+        />
+      ))}
+    </div>
   );
 };
 
