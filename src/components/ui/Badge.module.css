@@ -1,0 +1,34 @@
+/* Badge.module.css */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-full);
+  line-height: var(--line-height-tight);
+  white-space: nowrap;
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+.new {
+  background-color: var(--color-badge-new-bg);
+  color: var(--color-badge-new-text);
+}
+
+.sale {
+  background-color: var(--color-badge-sale-bg);
+  color: var(--color-badge-sale-text);
+}
+
+.hit {
+  background-color: var(--color-badge-hit-bg);
+  color: var(--color-badge-hit-text);
+}
+
+.danger {
+  background-color: var(--color-danger-light);
+  color: var(--color-danger);
+}

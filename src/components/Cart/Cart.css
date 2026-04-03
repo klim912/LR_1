@@ -1,73 +1,38 @@
-.cart-container {
-  width: 300px;
-  background: var(--cart-bg);
+.sidebar {
+  width: 180px;
+  background: var(--sidebar-bg);
   color: var(--text-dark);
-  padding: 15px;
   border: 1px solid var(--border-color);
   border-radius: 8px;
+  padding: 15px;
   height: fit-content;
   transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
-.cart-container h3 {
+.sidebar h3 {
   color: var(--text-dark);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.cart-empty {
-  color: var(--text-light);
-  font-style: italic;
-}
+.sidebar ul { list-style: none; }
 
-.cart-list {
-  list-style: none;
-  margin: 15px 0;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.item-info { display: flex; flex-direction: column; }
-.item-info span { color: var(--text-dark); font-size: 0.9rem; }
-.item-info small { color: var(--text-light); }
-
-.item-controls {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.item-controls button {
-  width: 24px;
-  height: 24px;
+.sidebar ul li {
   cursor: pointer;
-  background: var(--border-color);
-  color: var(--text-dark);
-  border: none;
-  border-radius: 4px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: var(--text-light);
+  transition: background 0.2s, color 0.2s;
+  font-size: 0.95rem;
+}
+.sidebar ul li:hover {
+  background: var(--bg-secondary);
+  color: var(--primary-color);
+}
+.sidebar ul li.active {
+  background: var(--bg-secondary);
+  color: var(--primary-color);
   font-weight: bold;
-  padding: 0;
-  transition: background 0.2s;
-}
-.item-controls button:hover { background: var(--primary-color); color: white; }
-
-.remove-btn {
-  background: #fee2e2 !important;
-  color: #ef4444 !important;
-}
-.remove-btn:hover { background: #ef4444 !important; color: white !important; }
-
-.item-controls span { color: var(--text-dark); min-width: 20px; text-align: center; }
-
-.cart-total {
-  border-top: 2px solid var(--border-color);
-  padding-top: 10px;
-  text-align: right;
-  color: var(--text-dark);
-  transition: border-color 0.35s ease;
 }

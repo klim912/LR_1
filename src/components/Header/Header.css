@@ -43,6 +43,7 @@
   gap: 16px;
 }
 
+/* Перемикач теми */
 .theme-toggle {
   display: flex;
   align-items: center;
@@ -86,6 +87,7 @@
   line-height: 1;
 }
 
+/* Кнопка мови */
 .lang-btn {
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);

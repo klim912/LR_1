@@ -9,18 +9,18 @@ import AddProductForm from "./components/AddProductForm/AddProductForm";
 import ApiProducts from "./components/ApiProducts/ApiProducts";
 import { ThemeProvider } from "./context/ThemeContext";
 import { SettingsProvider } from "./context/SettingsContext";
-import "./styles/global.css";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ProductDetails from "./pages/ProductDetails";
 import NotFound from "./pages/NotFound";
+import UiKit from "./pages/UiKit";
 
 const PRODUCTS = [
-  { id: 1, name: "Ноутбук TechPro 15", price: 1200, category: "Ноутбуки" },
-  { id: 2, name: "Смартфон Galaxy S23", price: 850, category: "Смартфони" },
-  { id: 3, name: "Бездротові навушники", price: 150, category: "Аксесуари" },
-  { id: 4, name: "Механічна клавіатура", price: 120, category: "Аксесуари" },
-  { id: 5, name: 'Монітор UltraView 27"', price: 350, category: "Монітори" },
+  { id: 1, name: "Ноутбук TechPro 15",   price: 1200, category: "Ноутбуки",  isNew: true  },
+  { id: 2, name: "Смартфон Galaxy S23",   price: 850,  category: "Смартфони", isSale: true },
+  { id: 3, name: "Бездротові навушники",  price: 150,  category: "Аксесуари" },
+  { id: 4, name: "Механічна клавіатура",  price: 120,  category: "Аксесуари" },
+  { id: 5, name: 'Монітор UltraView 27"', price: 350,  category: "Монітори"  },
 ];
 
 function App() {
@@ -122,11 +122,12 @@ function App() {
         <div className="app-container">
           <Header cartCount={cartItems.reduce((sum, item) => sum + item.count, 0)} />
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/catalog" element={CatalogContent} />
-            <Route path="/about" element={<About />} />
+            <Route path="/"         element={<Home />} />
+            <Route path="/catalog"  element={CatalogContent} />
+            <Route path="/about"    element={<About />} />
+            <Route path="/ui-kit"   element={<UiKit />} />
             <Route path="/product/:id" element={<ProductDetails products={products} />} />
-            <Route path="*" element={<NotFound />} />
+            <Route path="*"         element={<NotFound />} />
           </Routes>
           <Footer />
         </div>

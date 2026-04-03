@@ -1,36 +1,51 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSettings } from '../../context/SettingsContext';
-import './ProductCard.css';
+import { Card, Button, Badge } from '../ui';
+import styles from './ProductCard.module.css';
 
 const ProductCard = ({ product, onAddToCart, onToggleFavorite }) => {
   const { t } = useSettings();
 
   return (
-    <article className="product-card">
-      <div className="image-placeholder">Фото</div>
-      <div className="card-body">
-        <span className="category">{product.category}</span>
-        <h3>{product.name}</h3>
-        <p className="price">${product.price}</p>
+    <Card>
+      <Card.Image>
+        <span className={styles.photoPlaceholder}>📦</span>
+      </Card.Image>
 
-        <div className="card-actions">
-          <button className="buy-btn" onClick={() => onAddToCart(product)}>
-            {t('buy')}
-          </button>
-          <button
-            className={`fav-btn ${product.isFavorite ? 'active' : ''}`}
-            onClick={() => onToggleFavorite(product.id)}
-          >
-            {product.isFavorite ? t('inFav') : t('addToFav')}
-          </button>
+      <Card.Body>
+        <div className={styles.topRow}>
+          <span className={styles.category}>{product.category}</span>
+          {product.isNew  && <Badge variant="new">NEW</Badge>}
+          {product.isSale && <Badge variant="sale">SALE</Badge>}
         </div>
 
-        <Link to={`/product/${product.id}`} className="details-link">
-          {t('details')}
+        <h3 className={styles.name}>{product.name}</h3>
+        <p className={styles.price}>${product.price}</p>
+      </Card.Body>
+
+      <Card.Footer>
+        <Button
+          variant="primary"
+          size="sm"
+          onClick={() => onAddToCart(product)}
+        >
+          🛒 {t('buy')}
+        </Button>
+
+        <Button
+          variant={product.isFavorite ? 'danger' : 'secondary'}
+          size="sm"
+          onClick={() => onToggleFavorite(product.id)}
+        >
+          {product.isFavorite ? t('inFav') : t('addToFav')}
+        </Button>
+
+        <Link to={`/product/${product.id}`} className={styles.detailsLink}>
+          {t('details')} →
         </Link>
-      </div>
-    </article>
+      </Card.Footer>
+    </Card>
   );
 };
 
