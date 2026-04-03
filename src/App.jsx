@@ -7,6 +7,8 @@ import Footer from "./components/Footer/Footer";
 import Sidebar from "./components/Sidebar/Sidebar";
 import AddProductForm from "./components/AddProductForm/AddProductForm";
 import ApiProducts from "./components/ApiProducts/ApiProducts";
+import { ThemeProvider } from "./context/ThemeContext";
+import { SettingsProvider } from "./context/SettingsContext";
 import "./styles/global.css";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -42,8 +44,8 @@ function App() {
     localStorage.setItem('techstore-cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const filteredProducts = currentCategory === 'Всі' 
-    ? products 
+  const filteredProducts = currentCategory === 'Всі'
+    ? products
     : products.filter(p => p.category === currentCategory);
 
   const addToCart = (product) => {
@@ -51,7 +53,7 @@ function App() {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id ? { ...item, count: item.count + 1 } : item,
+          item.id === product.id ? { ...item, count: item.count + 1 } : item
         );
       }
       return [...prev, { ...product, count: 1 }];
@@ -66,7 +68,7 @@ function App() {
           return { ...item, count: newCount > 0 ? newCount : 1 };
         }
         return item;
-      }),
+      })
     );
   };
 
@@ -79,8 +81,8 @@ function App() {
       prevProducts.map((product) =>
         product.id === productId
           ? { ...product, isFavorite: !product.isFavorite }
-          : product,
-      ),
+          : product
+      )
     );
   };
 
@@ -89,27 +91,23 @@ function App() {
   };
 
   const CatalogContent = (
-    <div className="main-layout" style={{ display: "flex", gap: "20px", padding: "20px" }}>
-      <Sidebar 
-        activeCategory={currentCategory} 
-        onSelectCategory={setCurrentCategory} 
+    <div className="main-layout">
+      <Sidebar
+        activeCategory={currentCategory}
+        onSelectCategory={setCurrentCategory}
       />
-
-      <div className="content-area" style={{ flex: 1, display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div className="content-area">
         <AddProductForm onAddProduct={handleAddProduct} />
-        
         <MainContent
           allProducts={filteredProducts}
           onAddToCart={addToCart}
           onToggleFavorite={handleToggleFavorite}
         />
-
-        <ApiProducts 
+        <ApiProducts
           onAddToCart={addToCart}
           onToggleFavorite={handleToggleFavorite}
         />
       </div>
-
       <Cart
         items={cartItems}
         onUpdate={updateCount}
@@ -119,22 +117,21 @@ function App() {
   );
 
   return (
-    <div className="app-container">
-      {/* Шапка спільна для всіх сторінок */}
-      <Header cartCount={cartItems.reduce((sum, item) => sum + item.count, 0)} />
-      
-      {/* Маршрутизація */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/catalog" element={CatalogContent} />
-        <Route path="/about" element={<About />} />
-        <Route path="/product/:id" element={<ProductDetails products={products} />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-
-      {/* Футер спільний для всіх сторінок */}
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <SettingsProvider>
+        <div className="app-container">
+          <Header cartCount={cartItems.reduce((sum, item) => sum + item.count, 0)} />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/catalog" element={CatalogContent} />
+            <Route path="/about" element={<About />} />
+            <Route path="/product/:id" element={<ProductDetails products={products} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </div>
+      </SettingsProvider>
+    </ThemeProvider>
   );
 }
 
